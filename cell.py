@@ -1,4 +1,4 @@
-from graphics import Window, Line, Point
+from graphics import Line, Point
 
 class Cell:
     def __init__(self,window=None):
@@ -13,25 +13,39 @@ class Cell:
         self._window = window
 
     def draw(self, x1, y1, x2, y2):
+        if self._window is None:
+            return
         self._x1 = x1
         self._x2 = x2
         self._y1 = y1
         self._y2 = y2
         if self.has_left_wall:
-            line_left = Line(Point(x1, y1), Point(x1, y2))
-            self._window.draw(line_left, "black")
+            line = Line(Point(x1, y1), Point(x1, y2))
+            self._window.draw(line)
+        else:
+            line = Line(Point(x1, y1), Point(x1, y2))
+            self._window.draw(line, "white")
 
         if self.has_right_wall:
-            line_right = Line(Point(x2, y1), Point(x2, y2))
-            self._window.draw(line_right, "black")
+            line = Line(Point(x2, y1), Point(x2, y2))
+            self._window.draw(line)
+        else:
+            line = Line(Point(x2, y1), Point(x2, y2))
+            self._window.draw(line, "white")
         
         if self.has_top_wall:
-            line_top = Line(Point(x1, y1), Point(x2, y1))
-            self._window.draw(line_top, "black")
+            line = Line(Point(x1, y1), Point(x2, y1))
+            self._window.draw(line)
+        else:
+            line = Line(Point(x1, y1), Point(x2, y1))
+            self._window.draw(line, "white")
         
         if self.has_bottom_wall:
-            line_bottom = Line(Point(x1, y2), Point(x2, y2))
-            self._window.draw(line_bottom, "black")
+            line = Line(Point(x1, y2), Point(x2, y2))
+            self._window.draw(line)
+        else:
+            line = Line(Point(x1, y2), Point(x2, y2))
+            self._window.draw(line, "white")
 
     def draw_move(self, to_cell, undo=False):
         from_x = (self._x1 + self._x2)/2
