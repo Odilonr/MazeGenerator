@@ -1,11 +1,12 @@
 from tkinter import Tk, BOTH, Canvas
  
 
+## Main window where our Maze will sit
 class Window:
     def __init__(self, height, width):
         self._root = Tk()
         self._root.title("Maze Solver")
-        self._canvas = Canvas(master=self._root,height=height, width=width)
+        self._canvas = Canvas(master=self._root,height=height, width=width,bg="white")
         self._canvas.pack(fill=BOTH, expand=1)
         self._running = False
         self._root.protocol("WM_DELETE_WINDOW", self.close)
@@ -25,11 +26,13 @@ class Window:
     def close(self):
         self._running = False
 
+# Points that indicate where in the canvas/window should things be drawn
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
+# Line that will represent the cell borders as well as the Maze parcour
 class Line:
     def __init__(self, point1, point2):
         self.point1 = point1
